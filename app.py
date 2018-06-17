@@ -56,5 +56,10 @@ def index():
 def about():
   return render_template('about.html')
 
+@app.route('/graph/'i,methods=['GET','POST'])
+def graph():
+  stock = request.form['ticker']
+  return render_template('graph.html')
+
 if __name__ == '__main__':
   app.run(port=33507)
