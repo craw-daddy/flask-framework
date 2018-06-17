@@ -4,15 +4,11 @@ from flask import Flask, render_template, request, redirect
 import pandas as pd
 import numpy as np
 import requests
-from datetime import date
 
 from bokeh.layouts import gridplot
 from bokeh.plotting import figure, show, output_file
 from bokeh.io import output_notebook
 from bokeh import embed
-
-def datetime(t):
-    return np.array(t, dtype=np.datetime64)
 
 def getStock(stock, start_date, end_date):
     base_url = 'https://www.quandl.com/api/v3/datasets/EOD/'
@@ -36,13 +32,13 @@ def drawGraph(df, stock, open_price=False, close_price=True, adj_open=False, adj
     p.yaxis.axis_label = 'Price'
     
     if open_price:
-        p.line(datetime(df.index),df['Open'], color="darkorange", legend=stock + ': Open')
+        p.line(np.array(df.index, dtype=np.datetime64),df['Open'], color="darkorange", legend=stock + ': Open')
     if close_price:
-        p.line(datetime(df.index),df['Close'], color="blue", legend=stock + ': Close')
+        p.line(np.array(df.index, dtype=np.datetime64),df['Close'], color="blue", legend=stock + ': Close')
     if adj_open:
-        p.line(datetime(df.index),df['Adj_Open'], color="red", legend=stock + ': Adj_Open')
+        p.line(np.array(df.index, dtype=np.datetime64),df['Adj_Open'], color="red", legend=stock + ': Adj_Open')
     if adj_close:
-        p.line(datetime(df.index),df['Adj_Close'], color="green", legend=stock + ': Adj_Close')
+        p.line(np.array(df.index, dtype=np.datetime64),df['Adj_Close'], color="green", legend=stock + ': Adj_Close')
     p.legend.location='top_right'
     show(p)
 
