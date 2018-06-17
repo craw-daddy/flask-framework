@@ -55,7 +55,7 @@ def about():
 
 @app.route('/graph/',methods=['GET','POST'])
 def graph():
-    #if request.method == 'POST':
+    if request.method == 'POST':
        #stock = request.form['ticker']
        #df = getStock(stock, '2017-01-01', str(date.today()))
        #p = drawGraph(df, stock, open_price=True)
