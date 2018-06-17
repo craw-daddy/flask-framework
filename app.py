@@ -59,8 +59,8 @@ def graph():
        stock = request.form['ticker']
        df = getStock(stock, '2017-01-01', '2018-06-15')
        p = drawGraph(df, stock, open_price=True)
-       #script, div = embed.components(p)
-       return render_template('graph.html')  #, script=script, div=div)
+       script, div = embed.components(p)
+       return render_template('graph.html', script=script, div=div)
     return render_template('graph.html')  #, script=script, div=div)
 
 if __name__ == '__main__':
