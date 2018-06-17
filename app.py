@@ -58,8 +58,7 @@ def graph():
     if request.method == 'POST':
        close = open = adj_open = adj_close = False
        stock = request.form['ticker']
-       if request.form["close"]:
-          close = True
+       close = 'close' in request.form 
        if request.form.get("open"):
           open = True
        if request.form.get("adj_close"):
