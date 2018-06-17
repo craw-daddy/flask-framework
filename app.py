@@ -40,7 +40,7 @@ def drawGraph(df, stock, open_price=False, close_price=True, adj_open=False, adj
     if adj_close:
         p.line(np.array(df.index, dtype=np.datetime64),df['Adj_Close'], color="green", legend=stock + ': Adj_Close')
     p.legend.location='top_right'
-    show(p)
+    return p
 
 
 app = Flask(__name__)
@@ -59,7 +59,7 @@ def graph():
        stock = request.form['ticker']
        df = getStock(stock, '2017-01-01', str(date.today()))
        p = drawGraph(df, stock, open_price=True)
-       script, div = embed.components(p)
+       #script, div = embed.components(p)
        return render_template('graph.html')  #, script=script, div=div)
     return render_template('graph.html')  #, script=script, div=div)
 
