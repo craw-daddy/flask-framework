@@ -53,14 +53,15 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/graph/',methods=['GET','POST'])
+@app.route('/graph',methods=['GET','POST'])
 def graph():
     if request.method == 'POST':
+       return render_template('graph.html')  #, script=script, div=div)
        #stock = request.form['ticker']
        #df = getStock(stock, '2017-01-01', str(date.today()))
        #p = drawGraph(df, stock, open_price=True)
        #script, div = embed.components(p)
-       return render_template('graph.html')  #, script=script, div=div)
+    return render_template('graph.html')  #, script=script, div=div)
 
 if __name__ == '__main__':
     app.run(port=33507)
