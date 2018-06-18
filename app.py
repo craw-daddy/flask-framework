@@ -60,8 +60,7 @@ def graph():
        close = 'close' in request.form 
        open = 'open' in request.form
        adj_close = 'adj_close' in request.form
-       adj_open = 'adj_open' in if request.form
-       
+       adj_open = 'adj_open' in request.form
        df = getStock(stock, '2017-01-01', '2018-06-15')
        p = drawGraph(df, stock, open_price=open, close_price = close, adj_open = adj_open, adj_close = adj_close)
        script, div = embed.components(p)
