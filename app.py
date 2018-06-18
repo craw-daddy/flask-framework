@@ -56,20 +56,17 @@ def about():
 @app.route('/graph',methods=['GET','POST'])
 def graph():
     if request.method == 'POST':
-       close = open = adj_open = adj_close = False
        stock = request.form['ticker']
        close = 'close' in request.form 
-       if request.form.get("open"):
-          open = True
-       if request.form.get("adj_close"):
-          adj_close = True
-       if request.form.get("adj_open"):
-          adj_open = True
+       open = 'open' in request.form
+       adj_close = 'adj_close' in request.form
+       adj_open = 'adj_open' in if request.form
+       
        df = getStock(stock, '2017-01-01', '2018-06-15')
        p = drawGraph(df, stock, open_price=open, close_price = close, adj_open = adj_open, adj_close = adj_close)
        script, div = embed.components(p)
        return render_template('graph.html', script=script, div=div)
-    return render_template('graph.html')  #, script=script, div=div)
+    return render_template('graph.html')  
 
 if __name__ == '__main__':
     app.run(port=33507)
